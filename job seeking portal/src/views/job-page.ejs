@@ -1,0 +1,227 @@
+<!--  -->
+<div class="container">
+  <!-- Notifications -->
+  <% if (notification) { %>
+    <div id="notification" class="alert alert-success alert-dismissible fade show m-2" role="alert">
+        <%= notification %>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+
+    <script>
+        // Auto dismiss the alert after 5 seconds
+        setTimeout(function() {
+            const alert = document.getElementById('notification');
+            const bsAlert = new bootstrap.Alert(alert);
+            bsAlert.close();
+        }, 5000);
+    </script>
+  <% } %>
+  <!--  -->
+
+  <!--  -->
+  <div class="card mb-3 mt-2">
+    <!-- Job Image -->
+    <img
+      src="https://files.codingninjas.com/web-banner-28759.png"
+      class="card-img-top"
+      alt="Image"
+    />
+    <!-- Job Image Ends Here -->
+
+    <!-- Job Role -->
+    <h1 class="text-center mt-3 text-success fw-light fw-bold">
+      <span class="text-danger"> <%= job.designation %> </span> opportunity in
+      <%=job.location %> at
+      <span class="text-primary"> <%= job.company %></span>
+    </h1>
+    <!-- Job Role Ends Here -->
+
+    <!-- Recruiter Functions -->
+    <% if(locals.userEmail) { %>
+    <div class="d-flex ms-2">
+      <button type="button" class="btn btn-info ms-2">
+        Actively Hiring <i class="fa-solid fa-chart-line i-color ms-1"></i>
+      </button>
+      <span class="fs-5">
+        <a href="/updateJob/<%= job.id %>"
+          ><i class="fa-solid fa-file-pen fa-lg text-primary ms-4"></i
+        ></a>
+        <a href="/deletejob/<%= job.id %>">
+          <i class="fa-solid fa-trash-can fa-lg text-danger ms-2"></i></a
+      ></span>
+    </div>
+    <% } %>
+    <!--  -->
+
+    <div class="card-body">
+      <!-- Company And Job Type -->
+      <h3 class="fw-light fs-4 fw-bold"><%= job.company %></h3>
+      <h4 class="fw-light fs-5 fw-bold">
+        <%= job.category %>
+        <span class="text-success"> <%= job.designation %></span>
+      </h4>
+      <!-- Company And Job Type Ends Here -->
+
+      <!-- Job Details -->
+      <div class="job details d-flex flex-column m-3 mt-2">
+        <span><i class="fa-solid fa-map-pin"></i> <%= job.location %></span>
+        <span
+          ><i class="fa-solid fa-indian-rupee-sign"></i> <%= job.salary %>
+          lpa</span
+        >
+        <span
+          ><i class="fa-solid fa-hourglass-half"></i> Apply By <%= job.date
+          %></span
+        >
+        <span
+          ><i class="fa-solid fa-signal"></i> Number of openings <%=
+          job.openings %></span
+        >
+        <span class="text-danger"
+          ><i class="fa-solid fa-user-group"></i
+          ><a class="text-decoration-none text-danger" href="/applicants/<%=job.id%>">
+            Applicants <%= job.applicants ? job.applicants.length : 0 %></a
+          >
+        </span>
+      </div>
+
+      <!-- Skills And Apply -->
+      <!-- Skills -->
+      <div id="skills" class="d-flex flex-wrap m-1">
+        <% if (Array.isArray(job.skills)) {
+        job.skills.forEach((skill) => { %>
+        <button type="button" class="btn btn-outline-info mb-2 me-2">
+        <%= skill %>
+      </button>
+    <% });
+  } else { %>
+    <button type="button" class="btn btn-outline-info mb-2 me-2">
+      <%= job.skills %>
+    </button>
+  <% } %>
+</div>
+<!--  -->
+      
+        <!-- Apply Now -->
+        <button
+          type="button"
+          class="btn btn-primary"
+          data-bs-toggle="modal"
+          data-bs-target="#apply-now-modal"
+        >
+          Apply Now
+        </button>
+      </div>
+      <!-- Posted Button -->
+      <div class="m-3">
+        <button type="button" class="btn btn-success">
+          <%= job.postedTime %>
+        </button>
+      </div>
+      <!--  -->
+    </div>
+    <!--  -->
+
+    <!-- Apply Now -->
+    <!-- Modal -->
+    <div
+      class="modal fade"
+      id="apply-now-modal"
+      tabindex="-1"
+      aria-labelledby="exampleModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5 text-success" id="exampleModalLabel">
+              easily
+            </h1>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body p-5">
+            <!-- Apply Form Card Starts Here -->
+            <div class="card m-2 jobcard">
+              <div class="card-body">
+                <!-- Form -->
+                <form action="/postApplyJob/<%=job.id %>" method="post" enctype="multipart/form-data">
+                  <h3 class="fw-light pb-1">apply in less than 1 minute</h3>
+                  <div class="mb-3">
+                    <label for="name" class="form-label">Name</label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      name="name"
+                      id="name"
+                      placeholder="enter your name"
+                      required
+                    />
+                  </div>
+
+                  <div class="mb-3">
+                    <label for="email" class="form-label">Email address</label>
+                    <input
+                      type="email"
+                      name="email"
+                      class="form-control"
+                      id="email"
+                      aria-describedby="emailHelp"
+                      placeholder="enter your email"
+                      required
+                    />
+                    <div id="emailHelp" class="form-text">
+                      We'll never share your email with anyone else.
+                    </div>
+                  </div>
+                  <div class="mb-3">
+                    <label for="contact" class="form-label">Contact</label>
+                    <input
+                      type="tel"
+                      class="form-control"
+                      id="contact"
+                      name="contact"
+                      placeholder="+91 _ _ _ _ _ _ _ _ _ _"
+                      required
+                    />
+                  </div>
+                  <div class="mb-3">
+                    <label for="resume" class="form-label">Resume</label>
+                    <input
+                      type="file"
+                      class="form-control"
+                      name="resume"
+                      id="resume"
+                      required
+                    />
+                  </div>
+                  <button type="submit" class="btn btn-success w-100">
+                    Submit
+                  </button>
+                </form>
+                <!-- Form Ends -->
+              </div>
+            </div>
+
+            <!-- Apply Form Card Ends Here -->
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-bs-dismiss="modal"
+            >
+              Close
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+

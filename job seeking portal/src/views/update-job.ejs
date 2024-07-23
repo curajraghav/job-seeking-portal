@@ -1,0 +1,75 @@
+<style>
+    .postJobCard {
+      border-radius: 10px;
+      box-shadow: 0px 2px 8px 0px rgb(99 99 99 / 20%);
+      border-top: 5px solid #181642 !important;
+      border-left: 3px solid #181642 !important;
+    }
+  </style>
+  
+  <!-- update-job.ejs -->
+  <div class="container mt-5">
+    <div class="row justify-content-center">
+      <div class="col-md-6 mb-5">
+        <div class="card postJobCard">
+          <div class="card-body">
+            <h2 class="card-title text-center">Update Job</h2>
+            <form action="/updateJob/<%= job.id %>" method="post">
+              <div class="form-group">
+                <select class="form-control mb-3" id="jobCategory" name="category">
+                  <option selected disabled>Select job category</option>
+                  <% ["Tech", "Non-Tech"].forEach(category => { %>
+                    <option value="<%= category %>" <%= job.category === category ? "selected" : "" %>><%= category %></option>
+                  <% }) %>
+                </select>
+              </div>
+    
+              <div class="form-group mb-3">
+                <select class="form-control" id="jobDesignation" name="designation">
+                  <option selected disabled>Select job designation</option>
+                  <% ["HR", "SDE", "DevOps", "MERN Developer", "MEAN Developer", "Java Developer", "Front End Developer", "Back End Developer", "Full Stack Developer"].forEach(designation => { %>
+                    <option value="<%= designation %>" <%= job.designation === designation ? "selected" : "" %>><%= designation %></option>
+                  <% }) %>
+                </select>
+              </div>
+    
+              <div class="form-group mb-3">
+                <label for="jobLocation">Enter Job Location</label>
+                <input type="text" class="form-control" id="jobLocation" name="location" value="<%= job.location %>" />
+              </div>
+    
+              <div class="form-group mb-3">
+                <label for="companyName">Company Name</label>
+                <input type="text" class="form-control" id="companyName" name="company" value="<%= job.company %>" />
+              </div>
+    
+              <div class="form-group mb-3">
+                <input type="text" class="form-control" id="salary" placeholder="Enter salary" name="salary" value="<%= job.salary %>" />
+              </div>
+    
+              <div class="form-group mb-3">
+                <input type="text" class="form-control" id="totalPositions" placeholder="Total no of openings" name="openings" value="<%= job.openings %>" />
+              </div>
+    
+              <div class="form-group mb-3">
+                <select class="form-control" id="skillsRequired" multiple name="skills">
+                  <option selected disabled>Skills Required for this Job</option>
+                  <% ["React", "Node.js", "Angular", "MongoDB", "SQL", "Express", "Java", "Spring Boot", "C++", "Data Structures & Algo"].forEach(skill => { %>
+                    <option value="<%= skill %>" <%= job.skills.includes(skill) ? "selected" : "" %>><%= skill %></option>
+                  <% }) %>
+                </select>
+              </div>
+    
+              <div class="form-group mb-3">
+                <label for="applyBy">Apply By</label>
+                <input type="date" class="form-control" id="applyBy" name="date" value="<%= job.date %>" />
+              </div>
+    
+              <button type="submit" class="btn btn-success btn-block w-100">Update Job</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  

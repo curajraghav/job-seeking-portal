@@ -1,0 +1,26 @@
+.login-container {
+    display: flex;
+    justify-content: center;
+    /* align-items: center; */
+    /* height: 100vh; */
+  }
+  .login-card {
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0px 2px 8px 0px rgb(99 99 99 / 20%);
+    border-top: 5px solid #181642 !important;
+    border-left: 3px solid #181642 !important;
+    width: 70vw;
+  }
+  .login-heading {
+    font-size: 2.6rem;
+    text-align: center;
+  }
+  .custom-label {
+    font-weight: bold;
+  }
+
+  .custom-button {
+    background-color: #ff2c90 !important;
+    border: none;
+  }

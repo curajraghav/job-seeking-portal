@@ -1,0 +1,134 @@
+<style>
+  .postJobCard {
+    border-radius: 10px;
+    box-shadow: 0px 2px 8px 0px rgb(99 99 99 / 20%);
+    border-top: 5px solid #181642 !important;
+    border-left: 3px solid #181642 !important;
+  }
+</style>
+
+<div class="container mt-5">
+  <div class="row justify-content-center">
+    <div class="col-md-6 mb-5">
+      <div class="card postJobCard">
+        <div class="card-body">
+          <h2 class="card-title text-center">Post a New Job</h2>
+          <form action="\postjob" method="post">
+            <div class="form-group">
+              <select
+                class="form-control mb-3"
+                id="jobCategory"
+                name="category"
+              >
+                <option selected disabled>select job category</option>
+                <option value="Tech">Tech</option>
+                <option value="Non-Tech">Non-Tech</option>
+                <!-- Add more options as needed -->
+              </select>
+            </div>
+
+            <div class="form-group mb-3">
+              <select
+                class="form-control"
+                id="jobDesignation"
+                name="designation"
+              >
+                <option selected disabled>select job designation</option>
+                <option value="HR">HR</option>
+                <option value="SDE">SDE</option>
+                <option value="DevOps">DevOps</option>
+                <option value="MERN Developer">MERN Developer</option>
+                <option value="MEAN Developer">MEAN Developer</option>
+                <option value="Java Developer">Java Developer</option>
+                <option value="Front End Developer">Front End Developer</option>
+                <option value="Back End Developer">Back End Developer</option>
+                <option value="Full Stack Developer">
+                  Full Stack Developer
+                </option>
+                <!-- Add more designations as needed -->
+              </select>
+            </div>
+
+            <div class="form-group mb-3">
+              <label for="jobLocation">Enter Job Location</label>
+              <input
+                type="text"
+                class="form-control"
+                id="jobLocation"
+                name="location"
+              />
+            </div>
+
+            <div class="form-group mb-3">
+              <label for="companyName">COMPANY NAME</label>
+              <input
+                type="text"
+                class="form-control"
+                id="companyName"
+                name="company"
+              />
+            </div>
+
+            <div class="form-group mb-3">
+              <input
+                type="text"
+                class="form-control"
+                id="salary"
+                placeholder="enter salary"
+                name="salary"
+              />
+            </div>
+
+            <div class="form-group mb-3">
+              <input
+                type="text"
+                class="form-control"
+                id="totalPositions"
+                placeholder="total no of openings"
+                name="openings"
+              />
+            </div>
+
+            <div class="form-group mb-3">
+              <select
+                class="form-control"
+                id="skillsRequired"
+                multiple
+                name="skills"
+              >
+                <option selected disabled>Skills Required for this Job</option>
+                <option value="React">React</option>
+                <option value="Node.js">Node.js</option>
+                <option value="Angular">Angular</option>
+                <option value="MongoDB">MongoDB</option>
+                <option value="SQL">SQL</option>
+                <option value="Express">Express</option>
+                <option value="Java">Java</option>
+                <option value="Spring Boot">Spring Boot</option>
+                <option value="C++">C++</option>
+                <option value="Data Structures & Algo">
+                  Data Structures & Algo
+                </option>
+                <!-- Add more skills as needed -->
+              </select>
+            </div>
+
+            <div class="form-group mb-3">
+              <label for="applyBy">Apply By</label>
+              <input
+                type="date"
+                class="form-control"
+                id="applyBy"
+                name="date"
+              />
+            </div>
+
+            <button type="submit" class="btn btn-success btn-block w-100">
+              Post Job
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

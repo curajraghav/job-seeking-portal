@@ -1,0 +1,38 @@
+<div class="container">
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Name</th>
+        <th scope="col">Email</th>
+        <th scope="col">Contact</th>
+        <th scope="col">Resume</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% if (job.applicants && Array.isArray(job.applicants) &&
+      job.applicants.length > 0) { job.applicants.forEach((applicant) => { %>
+      <tr class="bg-light">
+        <th scope="row"><%= applicant.id %></th>
+        <td><%= applicant.name %></td>
+        <td><%= applicant.email %></td>
+        <td><%= applicant.contact %></td>
+        <td>
+          <a
+            href="/applicant-resume/<%= applicant.email %>/<%= job.id %>"
+            target="_blank"
+            class="btn btn-primary btn-sm"
+            >View</a
+          >
+        </td>
+      </tr>
+      <% }); %> <% } else { %>
+      <tr>
+        <td colspan="5" class="text-center">
+          No applicants found for this job.
+        </td>
+      </tr>
+      <% } %>
+    </tbody>
+  </table>
+</div>

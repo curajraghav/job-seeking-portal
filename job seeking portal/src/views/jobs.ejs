@@ -1,0 +1,76 @@
+<div
+  class="container-fluid pt-5 pb-5 bg-color-jobs d-flex align-items-start justify-content-evenly flex-wrap"
+>
+  <% if (allJobs.length > 0) { %>
+  <!-- Job Card -->
+  <% allJobs.forEach((job) => { %>
+  <div
+    class="card border border-2 bg-dark bg-transparent bg-gradient m-3 jobs-card"
+    style="width: 320px"
+  >
+    <!-- Card Header -->
+    <div class="header p-2">
+      <button
+        type="button"
+        class="btn btn-outline-success fs-5 mb-2 text-light btn-bg-color"
+      >
+        Actively hiring <i class="fa-solid fa-chart-line i-color"></i>
+      </button>
+      <h2 class="fw-bold fs-4 text-warning mb-3"><%= job.company %></h2>
+      <span class="d-flex">
+        <h3 class="text-light fs-5 fw-bold"><%= job.category %></h3>
+        <h3 class="text-primary fs-5 fw-bold ms-2"><%= job.designation %></h3>
+      </span>
+    </div>
+    <!-- Header Ends Here -->
+    <!-- Card Body -->
+    <div class="card-body p-2 pb-2 ms-4">
+      <h5 class="text-light fw-bold mb-3 fs-6">
+        <i class="fa-solid fa-location-dot"></i> <%= job.location %>
+      </h5>
+      <h5 class="text-light fw-bold mb-3 fs-6">
+        <i class="fa-solid fa-indian-rupee-sign"></i> <%= job.salary %>
+      </h5>
+      <!-- Skills -->
+      <div id="skills" class="d-flex flex-wrap m-1">
+        <% if (Array.isArray(job.skills)) { job.skills.forEach((skill) => { %>
+        <button type="button" class="btn btn-outline-info mb-1 me-1">
+          <%= skill %>
+        </button>
+        <% }); } else { %>
+        <button type="button" class="btn btn-outline-info mb-1 me-1">
+          <%= job.skills %>
+        </button>
+        <% } %>
+      </div>
+      <!--  -->
+    </div>
+    <!-- Card Body Ends Here -->
+    <!-- View Details -->
+    <div>
+      <a
+        href="/jobs/job-page/<%= job.id %>"
+        class="d-flex justify-content-center text-decoration-none"
+      >
+        <button
+          type="button"
+          class="btn btn-outline-success mb-4 w-75"
+          id="view-details-button"
+        >
+          View Details
+        </button>
+      </a>
+    </div>
+    <!-- View Details Ends Here -->
+  </div>
+  <% }) %>
+  <!-- Job Card Ends Here -->
+  <% } else { %>
+  <!-- Display a message when no jobs are found -->
+  <div class="text-center">
+    <div class="alert alert-primary fs-5 fw-bolder" role="alert">
+      No Jobs Found Here Brother
+    </div>
+  </div>
+  <% } %>
+</div>
